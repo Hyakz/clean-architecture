@@ -1,0 +1,13 @@
+unit uClientes;
+
+interface
+
+type
+  TCliente = class
+    property ID: integer;
+    property Nome, Documento, Logradouro, Numero, Complemento, Bairro, Cidade, UF, Telefone: String;
+  end;
+
+implementation
+
+end.

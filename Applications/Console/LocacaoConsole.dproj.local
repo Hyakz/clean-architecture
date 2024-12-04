@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2024/12/03 20:14:36.131,C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\LocacaoConsole.dproj=C:\Users\kaleu\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2024/12/03 20:15:49.584,=C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/03 20:16:48.789,C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\uMenuPrincipal.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/03 21:06:21.307,=C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/03 21:06:48.380,C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Models\uClientes.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

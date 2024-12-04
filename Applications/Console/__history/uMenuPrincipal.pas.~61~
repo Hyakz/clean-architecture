@@ -1,0 +1,273 @@
+unit uMenuPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, System.SysUtils;
+
+procedure Menu;
+procedure Clear;
+
+//Modulo Cliente
+procedure MenuCliente;
+procedure CadastrarCliente;
+procedure AlterarCliente;
+procedure ExcluirCliente;
+procedure ConsultarCliente;
+
+//Modulo Veiculo
+procedure MenuVeiculo;
+procedure CadastrarVeiculo;
+procedure AlterarVeiculo;
+procedure ExcluirVeiculo;
+procedure ConsultarVeiculo;
+
+//Modulo Veiculo
+procedure MenuLocacao;
+procedure CadastrarLocacao;
+procedure AlterarLocacao;
+procedure ExcluirLocacao;
+procedure ConsultarLocacao;
+
+implementation
+
+// Functions
+
+function Modulos: String;
+begin
+  Result := '1 - Cadastrar' + #13#10 +
+            '2 - Alterar  ' + #13#10 +
+            '3 - Editar   ' + #13#10 +
+            '4 - Consultar' + #13#10 +
+            '5 - Voltar   ';
+end;
+
+// Menus
+
+procedure Menu;
+var
+  iCodigo: Integer;
+  cModulo: String;
+begin
+  Clear;
+
+  writeln('Menu Principal');
+  writeln;
+
+  cModulo := '1 - Clientes' + #13#10 +
+             '2 - Veiculos' + #13#10 +
+             '3 - Locações';
+
+  writeln(cModulo);
+  Writeln(Output, 'Opção');
+  readln(input, iCodigo);
+
+  case iCodigo of
+    1: MenuCliente;
+    2: MenuVeiculo;
+    3: MenuLocacao;
+  end;
+end;
+
+// Módulo Cliente
+
+procedure MenuCliente;
+var
+  iCodigo: Integer;
+begin
+  Clear;
+
+  writeln('Menu Clientes');
+  writeln;
+
+  writeln(Modulos);
+  Writeln(Output, 'Opção');
+  readln(input, iCodigo);
+
+  case iCodigo of
+    1: CadastrarCliente;
+    2: AlterarCliente;
+    3: ExcluirCliente;
+    4: ConsultarCliente;
+    5: Menu;
+  else
+    Writeln('Opção Inválida');
+    Readln;
+  end;
+end;
+
+procedure CadastrarCliente;
+begin
+  Clear;
+  Writeln('Cadastro de Clientes');
+  Readln;
+  Menu;
+end;
+
+procedure AlterarCliente;
+begin
+  Clear;
+  Writeln('Alterar Clientes');
+  Readln;
+  Menu;
+end;
+
+procedure ExcluirCliente;
+begin
+  Clear;
+  Writeln('Excluir Clientes');
+  Readln;
+  Menu;
+end;
+
+procedure ConsultarCliente;
+begin
+  Clear;
+  Writeln('Consultar Clientes');
+  Readln;
+  Menu;
+end;
+
+// Módulo Veiculo
+
+procedure MenuVeiculo;
+var
+  iCodigo: Integer;
+begin
+  Clear;
+
+  writeln('Menu Veiculo');
+  writeln;
+
+  writeln(Modulos);
+  Writeln(Output, 'Opção');
+  readln(input, iCodigo);
+
+  case iCodigo of
+    1: CadastrarCliente;
+    2: AlterarCliente;
+    3: ExcluirCliente;
+    4: ConsultarCliente;
+    5: Menu;
+  else
+    Writeln('Opção Inválida');
+    Readln;
+  end;
+end;
+
+procedure CadastrarVeiculo;
+begin
+  Clear;
+  Writeln('Cadastro de Veiculos');
+  Readln;
+  Menu;
+end;
+
+procedure AlterarVeiculo;
+begin
+  Clear;
+  Writeln('Alterar Veiculos');
+  Readln;
+  Menu;
+end;
+
+procedure ExcluirVeiculo;
+begin
+  Clear;
+  Writeln('Excluir Veiculos');
+  Readln;
+  Menu;
+end;
+
+procedure ConsultarVeiculo;
+begin
+  Clear;
+  Writeln('Consultar Veiculos');
+  Readln;
+  Menu;
+end;
+
+// Módulo Locação
+
+procedure MenuLocacao;
+var
+  iCodigo: Integer;
+begin
+  Clear;
+
+  writeln('Menu Locação');
+  writeln;
+
+  writeln(Modulos);
+  Writeln(Output, 'Opção');
+  readln(input, iCodigo);
+
+  case iCodigo of
+    1: CadastrarCliente;
+    2: AlterarCliente;
+    3: ExcluirCliente;
+    4: ConsultarCliente;
+    5: Menu;
+  else
+    Writeln('Opção Inválida');
+    Readln;
+  end;
+end;
+
+procedure CadastrarLocacao;
+begin
+  Clear;
+  Writeln('Cadastro de Veiculos');
+  Readln;
+  Menu;
+end;
+
+procedure AlterarLocacao;
+begin
+  Clear;
+  Writeln('Alterar Veiculos');
+  Readln;
+  Menu;
+end;
+
+procedure ExcluirLocacao;
+begin
+  Clear;
+  Writeln('Excluir Veiculos');
+  Readln;
+  Menu;
+end;
+
+procedure ConsultarLocacao;
+begin
+  Clear;
+  Writeln('Consultar Veiculos');
+  Readln;
+  Menu;
+end;
+
+// Método Limpar Tela
+
+procedure Clear;
+var
+  stdout: THandle;
+  csbi: TConsoleScreenBufferInfo;
+  ConsoleSize: DWORD;
+  NumWritten: DWORD;
+  Origin: TCoord;
+begin
+  stdout := GetStdHandle(STD_OUTPUT_HANDLE);
+
+  Win32Check(stdout<>INVALID_HANDLE_VALUE);
+  Win32Check(GetConsoleScreenBufferInfo(stdout, csbi));
+
+  ConsoleSize := csbi.dwSize.X * csbi.dwSize.Y;
+  Origin.X    := 0;
+  Origin.Y    := 0;
+
+  Win32Check(FillConsoleOutputCharacter(stdout, ' ', ConsoleSize, Origin, NumWritten));
+  Win32Check(FillConsoleOutputAttribute(stdout, csbi.wAttributes, ConsoleSize, Origin, NumWritten));
+  Win32Check(SetConsoleCursorPosition(stdout, Origin));
+end;
+
+end.
