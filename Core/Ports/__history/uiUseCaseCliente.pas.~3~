@@ -1,0 +1,12 @@
+unit uIUseCaseCliente;
+
+interface
+
+type
+  ICasoUsoCliente = interface
+
+  end;
+
+implementation
+
+end.

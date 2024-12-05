@@ -1,0 +1,25 @@
+unit uEnum;
+
+interface
+
+type
+  TMsgResponse = record
+    CadastradoComSucesso, AlteradoComSucesso,
+    ConsultaRealizada, ConsultaSemRetorno,
+    Deletado: String;
+  end;
+
+  function RetornarMsgRespons: TMsgResponse;
+
+implementation
+
+function RetornarMsgRespons: TMsgResponse;
+begin
+  Result.CadastradoComSucesso := 'Cadastrado com Sucesso!';
+  Result.AlteradoComSucesso   := 'Alterado com Sucesso!';
+  Result.Deletado             := 'Deletado com Sucesso!';
+  Result.ConsultaRealizada    := 'Consulta Realizada com Sucesso!';
+  Result.ConsultaSemRetorno   := 'Consulta sem Retorno!';
+end;
+
+end.

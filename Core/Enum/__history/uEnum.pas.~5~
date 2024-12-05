@@ -1,0 +1,13 @@
+unit uEnum;
+
+interface
+
+type
+  TMsgResponse = record
+    CadastradoComSucesso, AlteradoComSucesso,
+    ConsultaRealizada, ConsultaSemRetorno, Deletado: String;
+  end;
+
+implementation
+
+end.

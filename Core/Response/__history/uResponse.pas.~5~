@@ -1,0 +1,18 @@
+unit uResponse;
+
+interface
+
+uses
+  System.Generics.Collections;
+
+type
+  TResponse = record
+    lSucesso: Boolean;
+    iCodErro: Integer;
+    cMensagem: String;
+    Data: TListObject<Object>
+  end;
+
+implementation
+
+end.

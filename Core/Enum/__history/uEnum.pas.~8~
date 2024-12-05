@@ -1,0 +1,21 @@
+unit uEnum;
+
+interface
+
+type
+  TMsgResponse = record
+    CadastradoComSucesso, AlteradoComSucesso,
+    ConsultaRealizada, ConsultaSemRetorno,
+    Deletado: String;
+  end;
+
+  function RetornarMsgRespons: TMsgResponse;
+
+implementation
+
+function RetornarMsgRespons: TMsgResponse;
+begin
+
+end;
+
+end.

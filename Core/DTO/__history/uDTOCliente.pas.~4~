@@ -1,0 +1,12 @@
+unit uDTOCliente;
+
+interface
+
+type
+  DtoCliente = record
+
+  end;
+
+implementation
+
+end.

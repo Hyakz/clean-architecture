@@ -1,0 +1,15 @@
+unit uIUseCaseCliente;
+
+interface
+
+type
+  ICasoUsoCliente = interface
+    function Cadastrar(Cliente: TCliente): TResponse;
+    function Alterar(Cliente: TCliente): TResponse;
+    function
+    function
+  end;
+
+implementation
+
+end.
