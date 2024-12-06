@@ -1,0 +1,29 @@
+unit uEnumerador;
+
+interface
+
+type
+  TMsgResponse = record
+    CadastradoComSucesso, AlteradoComSucesso,
+    ConsultaRealizada, ConsultaSemRetorno,
+    Deletado: String;
+  end;
+
+  TErrorCode = record
+    NomeNaoInformado, NomeInvalido, DocumentoNaoInformado, DocumentoInvalido, TelefoneNaoInformado, TelefoneInvalido: Integer;
+  end;
+
+function RetornarMsgResponse: TMsgResponse;
+
+implementation
+
+function RetornarMsgResponse: TMsgResponse;
+begin
+  Result.CadastradoComSucesso := 'Cadastrado com Sucesso!';
+  Result.AlteradoComSucesso   := 'Alterado com Sucesso!';
+  Result.Deletado             := 'Deletado com Sucesso!';
+  Result.ConsultaRealizada    := 'Consulta Realizada com Sucesso!';
+  Result.ConsultaSemRetorno   := 'Consulta sem Retorno!';
+end;
+
+end.

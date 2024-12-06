@@ -8,11 +8,13 @@ uses
   System.SysUtils,
   uMenuPrincipal in 'uMenuPrincipal.pas',
   uClientes in '..\..\Core\Models\uClientes.pas',
-  uiUseCaseCliente in '..\..\Core\Ports\uiUseCaseCliente.pas',
+  uiCasoUsoCliente in '..\..\Core\Ports\uiCasoUsoCliente.pas',
   uResponse in '..\..\Core\Response\uResponse.pas',
   uDTOCliente in '..\..\Core\DTO\uDTOCliente.pas',
-  uUseCaseCliente in '..\..\Core\UseCases\uUseCaseCliente.pas',
-  uEnumerador in '..\..\Core\Enum\uEnumerador.pas';
+  uCasoUsoCliente in '..\..\Core\UseCases\uCasoUsoCliente.pas',
+  uEnumerador in '..\..\Core\Enum\uEnumerador.pas',
+  uExceptions in '..\..\Core\Exception\uExceptions.pas',
+  DTUtils in '..\..\Utils\DTUtils.pas';
 
 begin
   try

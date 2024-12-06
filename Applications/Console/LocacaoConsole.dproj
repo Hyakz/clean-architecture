@@ -92,11 +92,13 @@
         </DelphiCompile>
         <DCCReference Include="uMenuPrincipal.pas"/>
         <DCCReference Include="..\..\Core\Models\uClientes.pas"/>
-        <DCCReference Include="..\..\Core\Ports\uiUseCaseCliente.pas"/>
+        <DCCReference Include="..\..\Core\Ports\uiCasoUsoCliente.pas"/>
         <DCCReference Include="..\..\Core\Response\uResponse.pas"/>
         <DCCReference Include="..\..\Core\DTO\uDTOCliente.pas"/>
-        <DCCReference Include="..\..\Core\UseCases\uUseCaseCliente.pas"/>
+        <DCCReference Include="..\..\Core\UseCases\uCasoUsoCliente.pas"/>
         <DCCReference Include="..\..\Core\Enum\uEnumerador.pas"/>
+        <DCCReference Include="..\..\Core\Exception\uExceptions.pas"/>
+        <DCCReference Include="..\..\Utils\DTUtils.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

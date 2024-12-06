@@ -7,10 +7,10 @@ uses
 
 type
   TResponse = record
-    lSucesso: Boolean;
-    iCodErro: Integer;
-    cMensagem: String;
-    lstData: TObjectList<TObject>;
+    Sucesso: Boolean;
+    CodErro: Integer;
+    Mensagem: String;
+    Data: TObjectList<TObject>;
   end;
 
 implementation
