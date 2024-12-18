@@ -1,0 +1,15 @@
+unit uiCasoUsoVeiculo;
+
+interface
+
+type
+  ICasoUsoCliente = interface
+    function Cadastrar(Veiculo: TVeiculo): TResponse;
+    function Alterar(Veiculo: TVeiculo): TResponse;
+    function Deletar(ID: Integer): TResponse;
+    function Consultar(Dto: DtoCliente): TResponse;
+  end;
+
+implementation
+
+end.

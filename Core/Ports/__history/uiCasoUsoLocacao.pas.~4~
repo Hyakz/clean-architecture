@@ -1,0 +1,10 @@
+unit uiCasoUsoLocacao;
+
+interface
+
+uses
+  uLocacao, uResponse, uDTOLocacao;
+
+implementation
+
+end.

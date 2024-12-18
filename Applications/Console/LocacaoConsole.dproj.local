@@ -8,8 +8,8 @@
     <Transaction>2024/12/03 21:06:48.000.380,C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Models\uClientes.pas</Transaction>
     <Transaction>2024/12/04 21:26:09.000.299,=C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas</Transaction>
     <Transaction>2024/12/04 21:26:42.000.945,C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Ports\uUseCaseCliente.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas</Transaction>
-    <Transaction>2024/12/04 21:27:28.000.971,C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Ports\uiUseCaseCliente.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Ports\uUseCaseCliente.pas</Transaction>
     <Transaction>2024/12/04 21:27:28.000.986,C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Ports\uUseCaseCliente.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Ports\uiUseCaseCliente.pas</Transaction>
+    <Transaction>2024/12/04 21:27:28.000.971,C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Ports\uiUseCaseCliente.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Ports\uUseCaseCliente.pas</Transaction>
     <Transaction>2024/12/04 21:28:35.000.271,C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Ports\uUseCaseCliente.pas=</Transaction>
     <Transaction>2024/12/04 21:28:38.000.709,=C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas</Transaction>
     <Transaction>2024/12/04 21:28:54.000.860,C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Ports\uiUseCaseCliente.pas</Transaction>
@@ -22,11 +22,29 @@
     <Transaction>2024/12/04 22:02:32.000.561,=C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas</Transaction>
     <Transaction>2024/12/04 22:02:56.000.829,C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Enum\uEnum.pas</Transaction>
     <Transaction>2024/12/04 22:11:20.000.998,C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Enum\uEnum.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Enum\uEnumerador.pas</Transaction>
-    <Transaction>2024/12/06 18:25:12.699,C:\Users\kaleu\OneDrive\Desktop\Curso\Core\UseCases\uCasoUsoCliente.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Core\UseCases\uUseCaseCliente.pas</Transaction>
-    <Transaction>2024/12/06 18:25:46.425,C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Ports\uiCasoUsoCliente.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Ports\uiUseCaseCliente.pas</Transaction>
-    <Transaction>2024/12/06 18:31:30.876,=C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas</Transaction>
-    <Transaction>2024/12/06 18:31:54.928,C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Exception\uExceptions.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas</Transaction>
-    <Transaction>2024/12/06 18:49:42.115,=C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas</Transaction>
-    <Transaction>2024/12/06 18:50:47.972,C:\Users\kaleu\OneDrive\Desktop\Curso\Utils\DTUtils.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/06 18:25:12.000.699,C:\Users\kaleu\OneDrive\Desktop\Curso\Core\UseCases\uCasoUsoCliente.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Core\UseCases\uUseCaseCliente.pas</Transaction>
+    <Transaction>2024/12/06 18:25:46.000.425,C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Ports\uiCasoUsoCliente.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Ports\uiUseCaseCliente.pas</Transaction>
+    <Transaction>2024/12/06 18:31:30.000.876,=C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/06 18:31:54.000.928,C:\Users\kaleu\OneDrive\Desktop\Curso\Core\Exception\uExceptions.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/06 18:49:42.000.115,=C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/06 18:50:47.000.972,C:\Users\kaleu\OneDrive\Desktop\Curso\Utils\DTUtils.pas=C:\Users\kaleu\OneDrive\Desktop\Curso\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 08:43:48.200,=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 08:44:15.434,C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Core\Models\uVeiculo.pas=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 08:51:55.547,=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 08:52:18.228,C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Core\Ports\uiCasoUsoVeiculo.pas=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 08:54:07.545,=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 08:54:20.895,C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Core\DTO\uDTOVeiculo.pas=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 08:56:42.320,=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 08:57:03.363,C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Core\UseCases\uCasoUsoVeiculo.pas=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 09:50:34.058,=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 09:50:48.589,C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Core\Models\uLocacao.pas=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 10:22:22.964,=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 10:22:37.977,C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Core\Ports\uiCasoUsoLocacao.pas=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 10:25:16.338,=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 10:25:35.218,C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Core\DTO\uDTOLocacao.pas=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 10:28:01.940,=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 10:28:19.249,C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Core\UseCases\uCasoUsoLocacao.pas=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 11:24:08.378,=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
+    <Transaction>2024/12/18 11:25:37.392,C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Core\Ports\uRepositoyCliente.pas=C:\Users\devmv\Desktop\Eu\Delphi\clean-architecture\Applications\Console\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

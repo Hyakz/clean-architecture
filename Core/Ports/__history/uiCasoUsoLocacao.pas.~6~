@@ -1,0 +1,17 @@
+unit uiCasoUsoLocacao;
+
+interface
+
+uses
+  uLocacao, uResponse, uDTOLocacao;
+
+  type
+    ICasoUsoLocacao = interface
+      function Cadastrar(Locacao: TLocacao): TResponse;
+      function Alterar(Locacao: TLocacao): TResponse;
+      function Deletar(Locacao: TLocacao): TResponse;
+      function Consultar(Locacao: TLocacao): TResponse;
+    end;
+implementation
+
+end.

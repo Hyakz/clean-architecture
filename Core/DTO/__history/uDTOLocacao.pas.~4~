@@ -1,0 +1,15 @@
+unit uDTOLocacao;
+
+interface
+
+type
+  DtoLocacao = record
+    ID: Integer;
+    ClienteID: Integer;
+    DataLocacao: TDateTime;
+    DataDevolucao: TDateTime;
+  end;
+
+implementation
+
+end.

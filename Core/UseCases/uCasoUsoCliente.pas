@@ -4,7 +4,7 @@ interface
 
 uses
   uiCasoUsoCliente, System.SysUtils, uClientes, uResponse, uDTOCliente,
-  uEnumerador, DTUtils;
+  uEnumerador, DTUtils, uExceptions;
 
 type
   TUCasoUsoCliente = class(TInterfacedObject, ICasoUsoCliente)
@@ -12,6 +12,7 @@ type
     function Alterar(Cliente: TCliente): TResponse;
     function Deletar(ID: Integer): TResponse;
     function Consultar(Dto: DtoCliente): TResponse;
+    procedure ValidarID(ID: Integer);
   end;
 
 implementation
@@ -27,7 +28,6 @@ begin
     Response.CodErro  := 0;
     Response.Mensagem := RetornarMsgResponse.CadastradoComSucesso;
     Response.Data     := nil;
-
   except
     on e: Exception do
     begin
@@ -35,7 +35,7 @@ begin
     end;
   end;
 
-  result := Response;
+  Result := Response;
 end;
 
 function TUCasoUsoCliente.Alterar(Cliente: TCliente): TResponse;
@@ -49,7 +49,6 @@ begin
     Response.CodErro  := 0;
     Response.Mensagem := RetornarMsgResponse.AlteradoComSucesso;
     Response.Data     := nil;
-
   except
     on e: Exception do
     begin
@@ -57,7 +56,7 @@ begin
     end;
   end;
 
-  result := Response;
+  Result := Response;
 end;
 
 function TUCasoUsoCliente.Deletar(ID: Integer): TResponse;
@@ -65,11 +64,12 @@ var
   Response: TResponse;
 begin
   try
+    ValidarID(ID);
+
     Response.Sucesso  := True;
     Response.CodErro  := 0;
     Response.Mensagem := RetornarMsgResponse.Deletado;
     Response.Data     := nil;
-
   except
     on e: Exception do
     begin
@@ -77,9 +77,8 @@ begin
     end;
   end;
 
-  result := Response;
+  Result := Response;
 end;
-
 
 function TUCasoUsoCliente.Consultar(Dto: DtoCliente): TResponse;
 var
@@ -90,7 +89,6 @@ begin
     Response.CodErro  := 0;
     Response.Mensagem := RetornarMsgResponse.ConsultaRealizada;
     Response.Data     := nil;
-
   except
     on e: Exception do
     begin
@@ -98,9 +96,13 @@ begin
     end;
   end;
 
-  result := Response;
+  Result := Response;
 end;
 
-
+procedure TUCasoUsoCliente.ValidarID(ID: Integer);
+begin
+  if (ID <= 0) then
+    ExceptionValidarID;
+end;
 
 end.

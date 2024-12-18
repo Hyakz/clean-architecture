@@ -47,6 +47,41 @@ begin
     Response.CodErro := RetornarErros.TelefoneInvalido;
   end;
 
+  if e.ClassType = TExceptionPlacaVeiculo then
+  begin
+    Response.CodErro := RetornarErros.PlacaNaoInformada;
+  end;
+
+  if e.ClassType = TExceptionPlacaVeiculoMinimo then
+  begin
+    Response.CodErro := RetornarErros.PlacaInvalida;
+  end;
+
+  if e.ClassType = TExceptionNomeMinimoVeiculo then
+  begin
+    Response.CodErro := RetornarErros.NomeInvalido;
+  end;
+
+  if e.ClassType = TExceptionValorVeiculo then
+  begin
+    Response.CodErro := RetornarErros.ValorInvalido;
+  end;
+
+  if e.ClassType = TExceptionLocacaoVeiculo then
+  begin
+    Response.CodErro := RetornarErros.VeiculoNaoInformado;
+  end;
+
+  if e.ClassType = TExceptionLocacaoCliente then
+  begin
+    Response.CodErro := RetornarErros.ClienteNaoInformado;
+  end;
+
+  if e.ClassType = TExceptionLocacaoVeiculoAlugado then
+  begin
+    Response.CodErro := RetornarErros.VeiculoAlugado;
+  end;
+
   Result := Response;
 end;
 

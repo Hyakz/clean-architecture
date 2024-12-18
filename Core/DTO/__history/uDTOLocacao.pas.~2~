@@ -1,0 +1,12 @@
+unit uDTOLocacao;
+
+interface
+
+type
+  DtoLocacao = record
+    ID: Integer;
+  end;
+
+implementation
+
+end.

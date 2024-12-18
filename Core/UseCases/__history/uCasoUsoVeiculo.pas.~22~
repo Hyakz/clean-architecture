@@ -1,0 +1,113 @@
+unit uCasoUsoVeiculo;
+
+interface
+
+uses
+  uVeiculo, uDTOVeiculo, uResponse, uiCasoUsoVeiculo, uEnumerador, DTUtils, uExceptions, System.SysUtils;
+
+type
+  TCasoUsoVeiculo = class (TInterfacedObject, ICasoUsoVeiculo)
+    function Cadastrar(Veiculo: TVeiculo): TResponse;
+    function Alterar(Veiculo: TVeiculo): TResponse;
+    function Deletar(ID: Integer): TResponse;
+    function Consultar(Dto: DtoVeiculo): TResponse;
+    procedure ValidarID(ID: Integer);
+  end;
+
+implementation
+
+{ TCasoUsoVeiculo }
+
+function TCasoUsoVeiculo.Alterar(Veiculo: TVeiculo): TResponse;
+var
+  Response: TResponse;
+begin
+  try
+    Veiculo.ValidarRegrasNegocio;
+
+    Response.Sucesso  := True;
+    Response.CodErro  := 0;
+    Response.Mensagem := RetornarMsgResponse.AlteradoComSucesso;
+    Response.Data     := nil;
+
+  except
+    on e: Exception do
+    begin
+      Response := TratarException(e);
+    end;
+  end;
+
+  Result := Response;
+end;
+
+function TCasoUsoVeiculo.Cadastrar(Veiculo: TVeiculo): TResponse;
+var
+  Response: TResponse;
+begin
+  try
+    Veiculo.ValidarRegrasNegocio;
+
+    Response.Sucesso  := True;
+    Response.CodErro  := 0;
+    Response.Mensagem := RetornarMsgResponse.CadastradoComSucesso;
+    Response.Data     := nil;
+
+  except
+    on e: Exception do
+    begin
+      Response := TratarException(e);
+    end;
+  end;
+
+  Result := Response;
+end;
+
+function TCasoUsoVeiculo.Consultar(Dto: DtoVeiculo): TResponse;
+var
+  Response: TResponse;
+begin
+  try
+    Response.Sucesso  := True;
+    Response.CodErro  := 0;
+    Response.Mensagem := RetornarMsgResponse.ConsultaRealizada;
+    Response.Data     := nil;
+
+  except
+    on e: Exception do
+    begin
+      Response := TratarException(e);
+    end;
+  end;
+
+  Result := Response;
+end;
+
+function TCasoUsoVeiculo.Deletar(ID: Integer): TResponse;
+var
+  Response: TResponse;
+begin
+  try
+    ValidarID(ID);
+
+    Response.Sucesso  := True;
+    Response.CodErro  := 0;
+    Response.Mensagem := RetornarMsgResponse.Deletado;
+    Response.Data     := nil;
+
+  except
+    on e: Exception do
+    begin
+      Response := TratarException(e);
+    end;
+  end;
+
+  Result := Response;
+end;
+
+procedure TCasoUsoVeiculo.ValidarID(ID: Integer);
+begin
+  if (ID <= 0) then
+    ExceptionValidarID;
+end;
+
+end.

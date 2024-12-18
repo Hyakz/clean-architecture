@@ -1,0 +1,18 @@
+unit uRepositoyCliente;
+
+interface
+
+uses
+  uClientes, uDTOCliente, System.Generics.Collections;
+
+type
+  IRespositoryCliente = interface
+    procedure Cadastrar(Cliente: TCliente);
+    procedure Alterar(Cliente: TCliente);
+    procedure Excluir(Codigo: Integer);
+    function Consultar(Dto: DtoCliente): TObjectList<TCliente>;
+  end;
+
+implementation
+
+end.
