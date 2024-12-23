@@ -14,12 +14,26 @@ uses
   uCasoUsoCliente in '..\..\Core\UseCases\uCasoUsoCliente.pas',
   uEnumerador in '..\..\Core\Enum\uEnumerador.pas',
   uExceptions in '..\..\Core\Exception\uExceptions.pas',
-  DTUtils in '..\..\Utils\DTUtils.pas';
+  DTUtils in '..\..\Utils\DTUtils.pas',
+  uVeiculo in '..\..\Core\Models\uVeiculo.pas',
+  uiCasoUsoVeiculo in '..\..\Core\Ports\uiCasoUsoVeiculo.pas',
+  uDTOVeiculo in '..\..\Core\DTO\uDTOVeiculo.pas',
+  uCasoUsoVeiculo in '..\..\Core\UseCases\uCasoUsoVeiculo.pas',
+  uLocacao in '..\..\Core\Models\uLocacao.pas',
+  uiCasoUsoLocacao in '..\..\Core\Ports\uiCasoUsoLocacao.pas',
+  uDTOLocacao in '..\..\Core\DTO\uDTOLocacao.pas',
+  uCasoUsoLocacao in '..\..\Core\UseCases\uCasoUsoLocacao.pas',
+  uConfiguracaoDB in '..\..\Repository\uConfiguracaoDB.pas',
+  uRepositoryCliente in '..\..\Repository\uRepositoryCliente.pas',
+  uiRepositoryCliente in '..\..\Core\Ports\ports repository\uiRepositoryCliente.pas',
+  uiRepositoryVeiculo in '..\..\Core\Ports\ports repository\uiRepositoryVeiculo.pas',
+  uRepositoryVeiculo in '..\..\Repository\uRepositoryVeiculo.pas',
+  uiRepositoryLocacao in '..\..\Core\Ports\ports repository\uiRepositoryLocacao.pas',
+  uRepositoryLocacao in '..\..\Repository\uRepositoryLocacao.pas';
 
 begin
   try
     { TODO -oUser -cConsole Main : Insert code here }
-
   Menu;
 
   except

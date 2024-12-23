@@ -6,9 +6,6 @@
         <Projects Include="Console\LocacaoConsole.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="Teste\LocacaoTeste.dproj">
-            <Dependencies/>
-        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -26,23 +23,14 @@
     <Target Name="LocacaoConsole:Make">
         <MSBuild Projects="Console\LocacaoConsole.dproj" Targets="Make"/>
     </Target>
-    <Target Name="LocacaoTeste">
-        <MSBuild Projects="Teste\LocacaoTeste.dproj"/>
-    </Target>
-    <Target Name="LocacaoTeste:Clean">
-        <MSBuild Projects="Teste\LocacaoTeste.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="LocacaoTeste:Make">
-        <MSBuild Projects="Teste\LocacaoTeste.dproj" Targets="Make"/>
-    </Target>
     <Target Name="Build">
-        <CallTarget Targets="LocacaoConsole;LocacaoTeste"/>
+        <CallTarget Targets="LocacaoConsole"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="LocacaoConsole:Clean;LocacaoTeste:Clean"/>
+        <CallTarget Targets="LocacaoConsole:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="LocacaoConsole:Make;LocacaoTeste:Make"/>
+        <CallTarget Targets="LocacaoConsole:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

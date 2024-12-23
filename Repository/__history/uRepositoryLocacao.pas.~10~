@@ -1,0 +1,41 @@
+unit uRepositoryLocacao;
+
+interface
+
+uses
+  uLocacao, uDTOLocacao, uiRepositoryLocacao, System.Generics.Collections, uConfiguracaoDB;
+
+type
+  TRepositoryLocacao = class(TInterfacedObject, IRepositoryLocacao)
+    procedure Cadastrar(Cliente: TLocacao);
+    procedure Alterar(Cliente: TLocacao);
+    procedure Excluir(Codigo: Integer);
+    function Consultar(Dto: DtoLocacao): TList<TLocacao>;
+  end;
+
+implementation
+
+{ TRepositoryLocacao }
+
+procedure TRepositoryLocacao.Alterar(Cliente: TLocacao);
+begin
+
+end;
+
+procedure TRepositoryLocacao.Cadastrar(Cliente: TLocacao);
+begin
+
+end;
+
+function TRepositoryLocacao.Consultar(Dto: DtoLocacao): TList<TLocacao>;
+begin
+
+end;
+
+procedure TRepositoryLocacao.Excluir(Codigo: Integer);
+begin
+
+end;
+
+
+end.

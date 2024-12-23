@@ -1,0 +1,121 @@
+unit uConfiguracaoDB;
+
+interface
+
+uses
+  Firedac.Comp.Client, Firedac.Phys.PG, System.SysUtils, IniFiles, uExceptions;
+
+type
+  TConfiguracaoDB = class
+  private
+    FQuery: TFDQuery;
+    Connection: TFDConnection;
+    FDPhsysPGDriverLink: TFDPhysPGDriverLink;
+    procedure SetQuery(const Value: TFDQuery);
+  published
+    function Conexao: TFDConnection;
+    function Consulta(SQL: string): Boolean;
+    procedure ExecSQL(SQL: string);
+    property Query: TFDQuery read FQuery write SetQuery;
+    constructor Create;
+    destructor Destroy; override;
+  end;
+
+implementation
+
+{ TConfiguracaoDB }
+
+constructor TConfiguracaoDB.Create;
+var
+  Diretorio, Server, User, DataB, Password, Driver: string;
+  ArquivoINI: TIniFile;
+begin
+  Diretorio  := ExtractFileDir(GetCurrentDir);
+  ArquivoINI := TIniFile.Create(Diretorio + '\configuracao.ini');
+  Server     := ArquivoINI.ReadString('conexao', 'server'  , '');
+  DataB      := ArquivoINI.ReadString('conexao', 'database', '');
+  User       := ArquivoINI.ReadString('conexao', 'user'    , '');
+  Password   := ArquivoINI.ReadString('conexao', 'password', '');
+  Driver     := 'PG';
+
+  try
+    Connection             := TFDConnection.Create(nil);
+    FDPhsysPGDriverLink    := FDPhsysPGDriverLink.Create(nil);
+    Connection.LoginPrompt := False;
+
+    Connection.Params.Clear;
+    Connection.Params.Add('DriverID=' + Driver);
+    Connection.Params.Add('DataBase=' + DataB);
+    Connection.Params.Add('User='     + User);
+    Connection.Params.Add('Password=' + Password);
+    Connection.Params.Add('Server='   + Server);
+
+    Connection.Open();
+
+    Query            := TFDQuery.Create(nil);
+    Query.Connection := Connection;
+  except
+    on E: Exception do
+    begin
+      Connection.Free;
+      FDPhsysPGDriverLink.Free;
+      Query.Free;
+
+      ExceptionDataBase(E.Message);
+    end;
+  end;
+end;
+
+destructor TConfiguracaoDB.Destroy;
+begin
+  Connection.Free;
+  FQuery.Free;
+  FDPhsysPGDriverLink.Free;
+
+  inherited;
+end;
+
+function TConfiguracaoDB.Conexao: TFDConnection;
+begin
+  Result := Connection;
+end;
+
+function TConfiguracaoDB.Consulta(SQL: string): Boolean;
+begin
+  Result := False;
+
+  try
+    FQuery.SQL.Clear;
+    FQuery.SQL.Add(SQL);
+    FQuery.Open();
+
+    Result := (not (FQuery.IsEmpty));
+  except
+    on E: Exception do
+    begin
+      ExceptionDataBase(E.Message);
+    end;
+  end;
+end;
+
+procedure TConfiguracaoDB.ExecSQL(SQL: string);
+begin
+  try
+    FQuery.SQL.Clear;
+    FQuery.SQL.Add(SQL);
+    FQuery.ExecSQL;
+  except
+   on E: Exception do
+   begin
+     ExceptionDataBase(E.Message);
+   end;
+  end;
+end;
+
+procedure TConfiguracaoDB.SetQuery(const Value: TFDQuery);
+begin
+  FQuery := Value;
+end;
+
+end.
+

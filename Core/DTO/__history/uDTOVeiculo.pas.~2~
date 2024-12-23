@@ -1,0 +1,14 @@
+unit uDTOVeiculo;
+
+interface
+
+type
+  DtoVeiculo = record
+    ID: Integer;
+    Nome: String;
+    Documento: String;
+  end;
+
+implementation
+
+end.

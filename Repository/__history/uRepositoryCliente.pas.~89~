@@ -1,0 +1,153 @@
+unit uRepositoryCliente;
+
+interface
+
+uses
+  uClientes, uDTOCliente, uiRepositoryCliente, System.SysUtils, System.Generics.Collections,
+  uConfiguracaoDB;
+
+type
+  TRepositoryCliente = class(TInterfacedObject, IRepositoryCliente)
+  private
+    FLista: TList<TCliente>;
+    ConfiguracaoDB: TConfiguracaoDB;
+    procedure SetLista(const Value: TList<TCliente>);
+  published
+    procedure Cadastrar(Cliente: TCliente);
+    procedure Alterar(Cliente: TCliente);
+    procedure Excluir(Codigo: Integer);
+    function Consultar(Dto: DtoCliente): TList<TCliente>;
+
+    property Lista: TList<TCliente> read FLista write SetLista;
+
+    constructor Create;
+    destructor Destroy; override;
+  end;
+
+implementation
+
+{ TRepositoryCliente }
+
+constructor TRepositoryCliente.Create;
+begin
+  Lista          := TList<TCliente>.Create;
+  ConfiguracaoDB := TConfiguracaoDB.Create;
+end;
+
+destructor TRepositoryCliente.Destroy;
+begin
+  Lista.Free;
+  ConfiguracaoDB.Free;
+
+  inherited;
+end;
+
+procedure TRepositoryCliente.Cadastrar(Cliente: TCliente);
+var
+  SQL: String;
+begin
+  SQL := 'INSERT INTO CLIENTES(NOME         '
+       + '                    ,DOCUMENTO    '
+       + '                    ,CEP          '
+       + '                    ,LOGRADOURO   '
+       + '                    ,NUMERO       '
+       + '                    ,COMPLEMENTO  '
+       + '                    ,BAIRRO       '
+       + '                    ,CIDADE       '
+       + '                    ,UF           '
+       + '                    ,TELEFONE)    '
+       + '             VALUES (             '
+       + QuotedStr(Cliente.Nome)        + ','
+       + QuotedStr(Cliente.Documento)   + ','
+       + QuotedStr(Cliente.CEP)         + ','
+       + QuotedStr(Cliente.Logradouro)  + ','
+       + QuotedStr(Cliente.Numero)      + ','
+       + QuotedStr(Cliente.Complemento) + ','
+       + QuotedStr(Cliente.Bairro)      + ','
+       + QuotedStr(Cliente.Cidade)      + ','
+       + QuotedStr(Cliente.UF)          + ','
+       + QuotedStr(Cliente.Telefone)    + ')';
+
+  ConfiguracaoDB.ExecSQL(SQL);
+end;
+
+procedure TRepositoryCliente.Alterar(Cliente: TCliente);
+var
+  SQL: String;
+begin
+  SQL := 'UPDATE CLIENTES SET NOME = '        + QuotedStr(Cliente.Nome)        + ',' +
+         '                    DOCUMENTO = '   + QuotedStr(Cliente.Documento)   + ',' +
+         '                    CEP = '         + QuotedStr(Cliente.CEP)         + ',' +
+         '                    LOGRADOURO = '  + QuotedStr(Cliente.Logradouro)  + ',' +
+         '                    NUMERO = '      + QuotedStr(Cliente.Numero)      + ',' +
+         '                    COMPLEMENTO = ' + QuotedStr(Cliente.Complemento) + ',' +
+         '                    BAIRRO = '      + QuotedStr(Cliente.Bairro)      + ',' +
+         '                    CIDADE = '      + QuotedStr(Cliente.Cidade)      + ',' +
+         '                    UF = '          + QuotedStr(Cliente.UF)          + ',' +
+         '                    TELEFONE = '    + QuotedStr(Cliente.Telefone)    +
+         '                    WHERE ID = '    + IntToStr(Cliente.ID);
+
+  ConfiguracaoDB.ExecSQL(SQL);
+end;
+
+procedure TRepositoryCliente.Excluir(Codigo: Integer);
+var
+  SQL: String;
+begin
+  SQL := 'DELETE FROM CLIENTES WHERE ID = ' + IntToStr(Codigo);
+  ConfiguracaoDB.ExecSQL(SQL);
+end;
+
+function TRepositoryCliente.Consultar(Dto: DtoCliente): TList<TCliente>;
+var
+  SQL: String;
+  Cliente: TCliente;
+begin
+  SQL := 'SELECT * FROM CLIENTES WHERE 1=1 ';
+
+  if (Dto.ID > 0) then
+    SQL := SQL + 'AND ID = ' + IntToStr(Dto.ID)
+  else
+  begin
+    if (Dto.Nome <> '') then
+      SQL := SQL + 'AND NOME LIKE ' + QuotedStr('%' +Dto.Nome+ '%');
+
+    if (Dto.Documento <> '') then
+      SQL := SQL + 'AND DOCUMENTO LIKE ' + QuotedStr('%' +Dto.Documento+ '%');
+  end;
+
+  if ConfiguracaoDB.Consulta(SQL) then
+  begin
+    Lista.Clear;
+
+    with ConfiguracaoDB do
+    begin
+      Query.First;
+
+      while(not(Query.Eof))do
+      begin
+        Cliente             := TCliente.Create;
+        Cliente.ID          := Query.FieldByName('ID').AsInteger;
+        Cliente.Nome        := Query.FieldByName('NOME').AsString;
+        Cliente.Documento   := Query.FieldByName('DOCUMENTO').AsString;
+        Cliente.CEP         := Query.FieldByName('CEP').AsString;
+        Cliente.Logradouro  := Query.FieldByName('CEP').AsString;
+        Cliente.Numero      := Query.FieldByName('CEP').AsString;
+        Cliente.Complemento := Query.FieldByName('CEP').AsString;
+        Cliente.Bairro      := Query.FieldByName('CEP').AsString;
+        Cliente.Cidade      := Query.FieldByName('CEP').AsString;
+        Cliente.UF          := Query.FieldByName('CEP').AsString;
+        Cliente.Telefone    := Query.FieldByName('CEP').AsString;
+
+              Query.Next;
+      end;
+    end;
+  end;
+end;
+
+procedure TRepositoryCliente.SetLista(const Value: TList<TCliente>);
+begin
+  FLista := Value;
+end;
+
+end.

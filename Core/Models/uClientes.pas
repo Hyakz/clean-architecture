@@ -18,6 +18,7 @@ type
     FNome: String;
     FCidade: String;
     FTelefone: String;
+    FCEP: String;
     procedure SetBairro(const Value: String);
     procedure SetCidade(const Value: String);
     procedure SetComplemento(const Value: String);
@@ -28,10 +29,12 @@ type
     procedure SetNumero(const Value: String);
     procedure SetTelefone(const Value: String);
     procedure SetUF(const Value: String);
+    procedure SetCEP(const Value: String);
   published
     property ID: integer read FID write SetID;
     property Nome: String read FNome write SetNome;
     property Documento: String read FDocumento write SetDocumento;
+    property CEP: String read FCEP write SetCEP;
     property Logradouro: String read FLogradouro write SetLogradouro;
     property Numero: String read FNumero write SetNumero;
     property Complemento: String read FComplemento write SetComplemento;
@@ -83,6 +86,11 @@ end;
 procedure TCliente.SetBairro(const Value: String);
 begin
   FBairro := Value;
+end;
+
+procedure TCliente.SetCEP(const Value: String);
+begin
+  FCEP := Value;
 end;
 
 procedure TCliente.SetCidade(const Value: String);

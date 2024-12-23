@@ -1,0 +1,15 @@
+unit uRepositoyCliente;
+
+interface
+
+uses
+  uClientes, uDTOCliente, System.Genererics.Collections;
+
+type
+  IRespositoryCliente = interface
+
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,154 @@
+unit uCasoUsoVeiculo;
+
+interface
+
+uses
+  uVeiculo, uDTOVeiculo, uResponse, uiCasoUsoVeiculo, uEnumerador, DTUtils, uExceptions, System.SysUtils, System.Generics.Collections,
+  uiRepositoryVeiculo;
+
+type
+  TCasoUsoVeiculo = class (TInterfacedObject, ICasoUsoVeiculo)
+  private
+    FRepository: IRepositoryVeiculo;
+    FLista: TList<TVeiculo>;
+    FListaObject: TObjectList<TObject>;
+    procedure SetLista(const Value: TList<TVeiculo>);
+    procedure SetListaObject(const Value: TObjectList<TObject>);
+  published
+    function Cadastrar(Veiculo: TVeiculo): TResponse;
+    function Alterar(Veiculo: TVeiculo): TResponse;
+    function Deletar(ID: Integer): TResponse;
+    function Consultar(Dto: DtoVeiculo): TResponse;
+    procedure ValidarID(ID: Integer);
+
+    constructor Create(Repository: IRepositoryVeiculo);
+    destructor Destroy; override;
+
+    property Lista: TList<TVeiculo> read FLista write SetLista;
+    property ListaObject: TObjectList<TObject> read FListaObject write SetListaObject;
+  end;
+
+implementation
+
+{ TCasoUsoVeiculo }
+
+constructor TCasoUsoVeiculo.Create(Repository: IRepositoryVeiculo);
+begin
+  FRepository := Repository;
+  Lista       := TList<TVeiculo>.Create;
+  ListaObject := TObjectList<TObject>.Create;
+end;
+
+destructor TCasoUsoVeiculo.Destroy;
+begin
+  Lista.Free;
+  ListaObject.Free;
+  inherited;
+end;
+
+function TCasoUsoVeiculo.Cadastrar(Veiculo: TVeiculo): TResponse;
+var
+  Response: TResponse;
+begin
+  try
+    Veiculo.ValidarRegrasNegocio;
+
+    FRepository.Cadastrar(Veiculo);
+
+    Response.Sucesso  := True;
+    Response.CodErro  := 0;
+    Response.Mensagem := RetornarMsgResponse.CadastradoComSucesso;
+    Response.Data     := nil;
+  except
+    on e: Exception do
+    begin
+      Response := TratarException(e);
+    end;
+  end;
+
+  Result := Response;
+end;
+
+function TCasoUsoVeiculo.Alterar(Veiculo: TVeiculo): TResponse;
+var
+  Response: TResponse;
+begin
+  try
+    Veiculo.ValidarRegrasNegocio;
+
+    FRepository.Alterar(Veiculo);
+
+    Response.Sucesso  := True;
+    Response.CodErro  := 0;
+    Response.Mensagem := RetornarMsgResponse.AlteradoComSucesso;
+    Response.Data     := nil;
+  except
+    on e: Exception do
+    begin
+      Response := TratarException(e);
+    end;
+  end;
+
+  Result := Response;
+end;
+
+function TCasoUsoVeiculo.Deletar(ID: Integer): TResponse;
+var
+  Response: TResponse;
+begin
+  try
+    ValidarID(ID);
+
+    FRepository.Excluir(ID);
+
+    Response.Sucesso  := True;
+    Response.CodErro  := 0;
+    Response.Mensagem := RetornarMsgResponse.Deletado;
+    Response.Data     := nil;
+  except
+    on e: Exception do
+    begin
+      Response := TratarException(e);
+    end;
+  end;
+
+  Result := Response;
+end;
+
+
+function TCasoUsoVeiculo.Consultar(Dto: DtoVeiculo): TResponse;
+var
+  Response: TResponse;
+begin
+  try
+    Response.Sucesso  := True;
+    Response.CodErro  := 0;
+    Response.Mensagem := RetornarMsgResponse.ConsultaRealizada;
+    Response.Data     := nil;
+  except
+    on e: Exception do
+    begin
+      Response := TratarException(e);
+    end;
+  end;
+
+  Result := Response;
+end;
+
+procedure TCasoUsoVeiculo.SetLista(const Value: TList<TVeiculo>);
+begin
+  FLista := Value;
+end;
+
+procedure TCasoUsoVeiculo.SetListaObject(const Value: TObjectList<TObject>);
+begin
+  FListaObject := Value;
+end;
+
+procedure TCasoUsoVeiculo.ValidarID(ID: Integer);
+begin
+  if (ID <= 0) then
+    ExceptionValidarID;
+end;
+
+end.

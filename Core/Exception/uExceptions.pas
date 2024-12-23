@@ -6,19 +6,46 @@ uses
   System.SysUtils;
 
 type
-  TExceptionNome            = class(Exception);
-  TExceptionNomeMinimo      = class(Exception);
-  TExceptionDocumento       = class(Exception);
-  TExceptionDocumentoMinimo = class(Exception);
-  TExceptionTelefone        = class(Exception);
-  TExceptionTelefoneMinimo  = class(Exception);
+  TExceptionValidarID             = class(Exception);
+  TExceptionDataBase              = class(Exception);
 
-procedure ExceptionNome;
-procedure ExceptionNomeMinimo;
-procedure ExceptionDocumento;
-procedure ExceptionDocumentoMinimo;
-procedure ExceptionTelefone;
-procedure ExceptionTelefoneMinimo;
+  TExceptionNome                  = class(Exception);
+  TExceptionNomeMinimo            = class(Exception);
+  TExceptionDocumento             = class(Exception);
+  TExceptionDocumentoMinimo       = class(Exception);
+  TExceptionTelefone              = class(Exception);
+  TExceptionTelefoneMinimo        = class(Exception);
+
+  TExceptionNomeMinimoVeiculo     = class(Exception);
+  TExceptionPlacaVeiculo          = class(Exception);
+  TExceptionValorVeiculo          = class(Exception);
+  TExceptionPlacaVeiculoMinimo    = class(Exception);
+
+  TExceptionLocacaoVeiculo        = class(Exception);
+  TExceptionLocacaoCliente        = class(Exception);
+  TExceptionLocacaoVeiculoAlugado = class(Exception);
+
+  procedure ExceptionValidarID;
+  procedure ExceptionDataBase(message: String);
+
+  //Cliente
+  procedure ExceptionNome;
+  procedure ExceptionNomeMinimo;
+  procedure ExceptionDocumento;
+  procedure ExceptionDocumentoMinimo;
+  procedure ExceptionTelefone;
+  procedure ExceptionTelefoneMinimo;
+
+  //Veiculo
+  procedure ExceptionNomeMinimoVeiculo;
+  procedure ExceptionPlacaVeiculo;
+  procedure ExceptionPlacaVeiculoMinimo;
+  procedure ExceptionValorVeiculo;
+
+  //Locacao
+  procedure ExceptionLocacaoVeiculo;
+  procedure ExceptionLocacaoCliente;
+  procedure ExceptionLocacaoVeiculoAlugado;
 
 implementation
 
@@ -29,7 +56,7 @@ end;
 
 procedure ExceptionNomeMinimo;
 begin
-  raise TExceptionNomeMinimo.Create('O Nome deve contor no minímo 3 Caracteres!');
+  raise TExceptionNomeMinimo.Create('O Nome deve conter no minímo 3 Caracteres!');
 end;
 
 procedure ExceptionDocumento;
@@ -52,5 +79,49 @@ begin
   raise TExceptionTelefone.Create('O Telefone conter no minímo 8 Caracteres!');
 end;
 
+procedure ExceptionNomeMinimoVeiculo;
+begin
+  raise TExceptionNomeMinimoVeiculo.Create('O Nome deve conter no minímo 3 caracteres!');
+end;
+
+procedure ExceptionPlacaVeiculo;
+begin
+  raise TExceptionPlacaVeiculo.Create('A Placa deve ser Informada!');
+end;
+
+procedure ExceptionPlacaVeiculoMinimo;
+begin
+  raise TExceptionPlacaVeiculoMinimo.Create('A Placa deve conter no minímo 6 caracteres!');
+end;
+
+procedure ExceptionValorVeiculo;
+begin
+  raise TExceptionValorVeiculo.Create('O valor deve ser maior que 0!');
+end;
+
+procedure ExceptionValidarID;
+begin
+  raise TExceptionValidarID.Create('O ID Informado é inválido!');
+end;
+
+procedure ExceptionLocacaoVeiculo;
+begin
+  raise TExceptionLocacaoVeiculo.Create('o Veículo deve ser Informado!');
+end;
+
+procedure ExceptionLocacaoCliente;
+begin
+  raise TExceptionLocacaoCliente.Create('o Cliente deve ser Informado!');
+end;
+
+procedure ExceptionLocacaoVeiculoAlugado;
+begin
+  raise TExceptionLocacaoVeiculoAlugado.Create('o Veículo já está Alugado!');
+end;
+
+procedure ExceptionDataBase(message: String);
+begin
+  raise TExceptionDataBase.Create(message);
+end;
 
 end.

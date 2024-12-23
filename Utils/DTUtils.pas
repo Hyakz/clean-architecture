@@ -3,11 +3,57 @@ unit DTUtils;
 interface
 
 uses
-  System.SysUtils, uResponse, uExceptions, uEnumerador;
+  System.SysUtils, uResponse, uExceptions, uEnumerador, uClientes, System.Generics.Collections, TypInfo,
+  uVeiculo;
 
 function TratarException(e: Exception): TResponse;
+function ListaClienteParaObjectList(ListaObject: TObjectList<TObject>; ListaCliente: TList<TCliente>): TObjectList<TObject>;
+function ListaVeiculoParaObjectList(ListaObject: TObjectList<TObject>; ListaVeiculo: TList<TVeiculo>): TObjectList<TObject>;
+
+function ConverterStatusStr(Value: TStatus): String;
+function ConverterStrStatus(Value: String): TStatus;
 
 implementation
+
+function ConverterStrStatus(Value: String): TStatus;
+begin
+  Result := TStatus(GetEnumValue(TypeInfo(TStatus), Value));
+end;
+
+function ConverterStatusStr(Value: TStatus): String;
+begin
+  Result := GetEnumName(TypeInfo(TStatus), Integer(Value));
+end;
+
+function ListaClienteParaObjectList(ListaObject: TObjectList<TObject>; ListaCliente: TList<TCliente>): TObjectList<TObject>;
+var
+  Cliente: TCliente;
+begin
+  if(ListaCliente.Count > 0)then
+  begin
+    for Cliente in ListaCliente do
+    begin
+      ListaObject.Add(Cliente);
+    end;
+  end;
+
+  Result := ListaObject;
+end;
+
+function ListaVeiculoParaObjectList(ListaObject: TObjectList<TObject>; ListaVeiculo: TList<TVeiculo>): TObjectList<TObject>;
+var
+  Veiculo: TVeiculo;
+begin
+  if(ListaVeiculo.Count > 0)then
+  begin
+    for Veiculo in ListaVeiculo do
+    begin
+      ListaObject.Add(Veiculo);
+    end;
+  end;
+
+  Result := ListaObject;
+end;
 
 function TratarException(e: Exception): TResponse;
 var
@@ -17,35 +63,47 @@ begin
   Response.Mensagem := e.Message;
   Response.Data     := nil;
 
-  if e.ClassType = TExceptionNome then
-  begin
-    Response.CodErro := RetornarErros.NomeNaoInformado;
-  end;
+  if e.ClassType = TExceptionDataBase then
+    Response.CodErro := RetornarErros.DataBaseError;
 
-   if e.ClassType = TExceptionNomeMinimo then
-  begin
+  if e.ClassType = TExceptionNome then
+    Response.CodErro := RetornarErros.NomeNaoInformado;
+
+  if e.ClassType = TExceptionNomeMinimo then
     Response.CodErro := RetornarErros.NomeInvalido;
-  end;
 
   if e.ClassType = TExceptionDocumento then
-  begin
     Response.CodErro := RetornarErros.DocumentoNaoInformado;
-  end;
 
   if e.ClassType = TExceptionDocumentoMinimo then
-  begin
     Response.CodErro := RetornarErros.DocumentoInvalido;
-  end;
 
   if e.ClassType = TExceptionTelefone then
-  begin
     Response.CodErro := RetornarErros.TelefoneNaoInformado;
-  end;
 
   if e.ClassType = TExceptionTelefoneMinimo then
-  begin
     Response.CodErro := RetornarErros.TelefoneInvalido;
-  end;
+
+  if e.ClassType = TExceptionPlacaVeiculo then
+    Response.CodErro := RetornarErros.PlacaNaoInformada;
+
+  if e.ClassType = TExceptionPlacaVeiculoMinimo then
+    Response.CodErro := RetornarErros.PlacaInvalida;
+
+  if e.ClassType = TExceptionNomeMinimoVeiculo then
+    Response.CodErro := RetornarErros.NomeInvalido;
+
+  if e.ClassType = TExceptionValorVeiculo then
+    Response.CodErro := RetornarErros.ValorInvalido;
+
+  if e.ClassType = TExceptionLocacaoVeiculo then
+    Response.CodErro := RetornarErros.VeiculoNaoInformado;
+
+  if e.ClassType = TExceptionLocacaoCliente then
+    Response.CodErro := RetornarErros.ClienteNaoInformado;
+
+  if e.ClassType = TExceptionLocacaoVeiculoAlugado then
+    Response.CodErro := RetornarErros.VeiculoAlugado;
 
   Result := Response;
 end;

@@ -5,7 +5,7 @@ interface
 type
   DtoCliente = record
     ID: Integer;
-    cNome, cDocumento: String;
+    Nome, Documento: String;
   end;
 
 implementation

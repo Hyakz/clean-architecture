@@ -1,0 +1,167 @@
+unit uCasoUsoCliente;
+
+interface
+
+uses
+  uiCasoUsoCliente, System.SysUtils, uClientes, uResponse, uDTOCliente,
+  uEnumerador, DTUtils, uExceptions, uiRepositoryCliente, System.Generics.Collections;
+
+type
+  TCasoUsoCliente = class(TInterfacedObject, ICasoUsoCliente)
+  private
+    FRepository: IRepositoryCliente;
+    FLista: TList<TCliente>;
+    FListaObject: TObjectList<TObject>;
+    procedure SetLista(const Value: TList<TCliente>);
+    procedure SetListaObject(const Value: TObjectList<TObject>);
+
+  published
+    function Cadastrar(Cliente: TCliente): TResponse;
+    function Alterar(Cliente: TCliente): TResponse;
+    function Deletar(ID: Integer): TResponse;
+    function Consultar(Dto: DtoCliente): TResponse;
+    procedure ValidarID(ID: Integer);
+
+    constructor Create(Repository: IRepositoryCliente);
+    destructor Destroy; override;
+
+    property Lista: TList<TCliente> read FLista write SetLista;
+    property ListaObject: TObjectList<TObject> read FListaObject write SetListaObject;
+  end;
+
+implementation
+
+{ TCasoUsoCliente }
+
+constructor TCasoUsoCliente.Create(Repository: IRepositoryCliente);
+begin
+  inherited Create;
+  FRepository := Repository;
+  Lista       := TList<TCliente>.Create;
+  ListaObject := TObjectList<TObject>.Create;
+end;
+
+destructor TCasoUsoCliente.Destroy;
+begin
+  Lista.Free;
+  ListaObject.Free;
+  inherited;
+end;
+
+function TCasoUsoCliente.Cadastrar(Cliente: TCliente): TResponse;
+var
+  Response: TResponse;
+begin
+  try
+    Cliente.ValidarRegrasNegocios;
+
+    FRepository.Cadastrar(Cliente);
+
+    Response.Sucesso  := True;
+    Response.CodErro  := 0;
+    Response.Mensagem := RetornarMsgResponse.CadastradoComSucesso;
+    Response.Data     := nil;
+  except
+    on e: Exception do
+    begin
+      Response := TratarException(e);
+    end;
+  end;
+
+  Result := Response;
+end;
+
+function TCasoUsoCliente.Alterar(Cliente: TCliente): TResponse;
+var
+  Response: TResponse;
+begin
+  try
+    Cliente.ValidarRegrasNegocios;
+
+    FRepository.Alterar(Cliente);
+
+    Response.Sucesso  := True;
+    Response.CodErro  := 0;
+    Response.Mensagem := RetornarMsgResponse.AlteradoComSucesso;
+    Response.Data     := nil;
+  except
+    on e: Exception do
+    begin
+      Response := TratarException(e);
+    end;
+  end;
+
+  Result := Response;
+end;
+
+function TCasoUsoCliente.Deletar(ID: Integer): TResponse;
+var
+  Response: TResponse;
+begin
+  try
+    ValidarID(ID);
+
+    FRepository.Excluir(ID);
+
+    Response.Sucesso  := True;
+    Response.CodErro  := 0;
+    Response.Mensagem := RetornarMsgResponse.Deletado;
+    Response.Data     := nil;
+  except
+    on e: Exception do
+    begin
+      Response := TratarException(e);
+    end;
+  end;
+
+  Result := Response;
+end;
+
+function TCasoUsoCliente.Consultar(Dto: DtoCliente): TResponse;
+var
+  Response: TResponse;
+begin
+  try
+    FLista := FRepository.Consultar(Dto);
+
+    if (FLista.Count > 0) then
+    begin
+      Response.Sucesso  := True;
+      Response.CodErro  := 0;
+      Response.Mensagem := RetornarMsgResponse.ConsultaRealizada;
+      Response.Data     := ListaObject;
+    end
+    else
+    begin
+      Response.Sucesso  := True;
+      Response.CodErro  := 0;
+      Response.Mensagem := RetornarMsgResponse.ConsultaRealizadaSemRetorno;
+      Response.Data     := nil;
+    end;
+  except
+    on e: Exception do
+    begin
+      Response := TratarException(e);
+    end;
+  end;
+
+  Result := Response;
+end;
+
+procedure TCasoUsoCliente.ValidarID(ID: Integer);
+begin
+  if (ID <= 0) then
+    ExceptionValidarID;
+end;
+
+procedure TCasoUsoCliente.SetLista(const Value: TList<TCliente>);
+begin
+  FLista := Value;
+end;
+
+procedure TCasoUsoCliente.SetListaObject(const Value: TObjectList<TObject>);
+begin
+  FListaObject := Value;
+end;
+
+end.

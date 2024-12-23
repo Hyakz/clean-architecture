@@ -1,0 +1,18 @@
+unit uiRepositoryLocacao;
+
+interface
+
+uses
+  uLocacao, uDTOLocacao, System.Generics.Collections;
+
+type
+  IRepositoryCliente = interface
+    procedure Cadastrar(Cliente: TLocacao);
+    procedure Alterar(Cliente: TCliente);
+    procedure Excluir(Codigo: Integer);
+    function Consultar(Dto: DtoCliente): TList<TCliente>;
+  end;
+
+implementation
+
+end.
