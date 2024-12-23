@@ -1,0 +1,106 @@
+unit uRepositoryLocacao;
+
+interface
+
+uses
+  uLocacao, uDTOLocacao, uiRepositoryLocacao, System.Generics.Collections, uConfiguracaoDB;
+
+type
+  TRepositoryLocacao = class(TInterfacedObject, IRepositoryLocacao)
+  private
+    ConfiguracaoDB: TConfiguracaoDB;
+    FLista: TList<TLocacao>;
+    procedure SetLista(const Value: TList<TLocacao>);
+  published
+    procedure Cadastrar(Locacao: TLocacao);
+    procedure Alterar(Locacao: TLocacao);
+    procedure Excluir(Codigo: Integer);
+    function Consultar(Dto: DtoLocacao): TList<TLocacao>;
+
+    constructor Create;
+    destructor Destroy; override;
+
+    property Lista: TList<TLocacao> read FLista write SetLista;
+  end;
+
+implementation
+
+uses
+  System.SysUtils;
+
+{ TRepositoryLocacao }
+
+constructor TRepositoryLocacao.Create;
+begin
+  Lista          := TList<TLocacao>.Create;
+  ConfiguracaoDB := TConfiguracaoDB.Create;
+end;
+
+destructor TRepositoryLocacao.Destroy;
+begin
+  Lista.Free;
+  ConfiguracaoDB.Free;
+
+  inherited;
+end;
+
+procedure TRepositoryLocacao.Cadastrar(Locacao: TLocacao);
+var
+  SQL: String;
+begin
+  SQL := 'INSERT INTO LOCACAO(CLIENTE_ID, DATA_LOCACAO, DATA_DEVOLUCAO, TOTAL, HASH)'
+       + 'VALUES('
+       + IntToStr(Locacao.Cliente.ID)                          + ','
+       + QuotedStr(DateToStr(Locacao.DataLocacao))             + ','
+       + QuotedStr(DateToStr(Locacao.DataDevolucao))           + ','
+       + StringReplace(CurrToStr(Locacao.Total), ',', '.', []) + ','
+       + QuotedStr(Locacao.Hash)                               + ')';
+
+  ConfiguracaoDB.ExecSQL(SQL);
+
+  SQL := 'SELECT ID FROM LOCACAO WHERE HASH = ' + QuotedStr(Locacao.Hash);
+
+  if(ConfiguracaoDB.Consulta(SQL))then
+    Locacao.ID := ConfiguracaoDB.Query.FieldByName('ID').AsInteger;
+
+  SQL := 'INSERT INTO LOCACAO_VEICULOS (LOCACAO_ID, VEICULO_ID, VALOR)'
+       + 'VALUES ('
+       + IntToStr(Locacao.ID)                                          + ','
+       + IntToStr(Locacao.Veiculo.ID)                                  + ','
+       + StringReplace(CurrToStr(Locacao.Veiculo.Valor), ',', '.', []) + ')';
+end;
+
+procedure TRepositoryLocacao.Alterar(Locacao: TLocacao);
+var
+  SQL: String;
+begin
+  SQL := 'UPDATE LOCACAO SET '
+       + 'CLIENTE_ID = '     + IntToStr(Locacao.Cliente.ID)                                  + ','
+       + 'DATA_DEVOLUCAO = ' + QuotedStr(DateToStr(Locacao.DataDevolucao))                   + ','
+       + 'TOTAL = '          + StringReplace(CurrToStr(Locacao.Veiculo.Valor), ',', '.', []) + ')'
+       + 'WHERE ID = '       + IntToStr(Locacao.ID);
+
+  ConfiguracaoDB.ExecSQL(SQL);
+
+  SQL := 'UPDATE LOCACAO_VEICULOS WET VEICULO_ID = ' + IntToStr(Locacao.Veiculo.ID)
+       + 'WHERE LOCACAO_ID = ' + IntToStr(Locacao.ID);
+
+  ConfiguracaoDB.ExecSQL(SQL);
+end;
+
+procedure TRepositoryLocacao.Excluir(Codigo: Integer);
+begin
+
+end;
+
+function TRepositoryLocacao.Consultar(Dto: DtoLocacao): TList<TLocacao>;
+begin
+
+end;
+
+procedure TRepositoryLocacao.SetLista(const Value: TList<TLocacao>);
+begin
+  FLista := Value;
+end;
+
+end.
