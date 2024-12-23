@@ -1,4 +1,4 @@
-# Aplicando Clean Architecture com Delphi
+# Aplicando Clean Architecture com Delphi 
 
 Este projeto demonstra a aplicação dos princípios da **Clean Architecture** utilizando a linguagem Delphi. 
 O objetivo é estruturar o código de forma que ele seja fácil de testar, manter e expandir, separando claramente as responsabilidades e minimizando dependências entre as camadas.
