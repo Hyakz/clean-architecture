@@ -16,11 +16,3 @@ A arquitetura limpa (Clean Architecture) é dividida em camadas que se comunicam
 
 Este projeto aplica a Clean Architecture em uma aplicação de exemplo, estruturando as responsabilidades de forma clara e separada. 
 A aplicação pode ser expandida com novas funcionalidades e camadas conforme necessário.
-
-## Instalação
-
-Para configurar o ambiente de desenvolvimento localmente:
-
-Clone o repositório:
-```bash
-git clone https://github.com/Hyakz/clean-architecture.git
